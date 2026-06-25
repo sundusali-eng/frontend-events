@@ -9,7 +9,11 @@ import { IoIosClose } from "react-icons/io";
 function Navbar () {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false)
  
+
+
+
      const handleIsOpen =()=>{
         setIsOpen(true)
      }
@@ -17,6 +21,17 @@ function Navbar () {
        const handleIsClose =()=>{
         setIsOpen(false)
      }
+   
+     const handleLogOutAction = () => {
+    logout();
+    navigate("/login");
+  };
+
+
+   useEffect(() => {
+    const token = localStorage.getItem('userLogin')
+    setUserLogin(!!token)
+  })
 
 
 
@@ -74,7 +89,13 @@ function Navbar () {
 
         {/* Buttons */}
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
-          <Link to='/login'>
+          {
+          userLogin? (
+            <button onClick={handleLogOutAction} className=" px-5 py-2 bg-violet-600 text-white rounded-md cursor-pointer" >LogOut</button>
+
+          ): (
+            <>
+            <Link to='/login'>
             <button className="px-4 py-2 border border-green-400 rounded-lg hover:bg-green-400 hover:text-black transition">
               Login
             </button>
@@ -85,6 +106,10 @@ function Navbar () {
               SingUp
             </button>
             </Link>
+            </>
+          )
+        }
+          
         </div>
 
          <button onClick={() => setIsOpen(!isOpen)}
