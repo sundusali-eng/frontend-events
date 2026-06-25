@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,7 +12,7 @@ function Navbar () {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false)
  
-
+const navigate = useNavigate()
 
 
      const handleIsOpen =()=>{
@@ -22,10 +23,12 @@ function Navbar () {
         setIsOpen(false)
      }
    
-     const handleLogOutAction = () => {
-    logout();
-    navigate("/login");
-  };
+    
+
+  const logout = () => {
+    localStorage.clear('userLoging')
+    navigate('/login')
+  }
 
 
    useEffect(() => {
@@ -91,7 +94,7 @@ function Navbar () {
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
           {
           isLogin? (
-            <button onClick={handleLogOutAction} className=" px-5 py-2 bg-green-600 text-white rounded-md cursor-pointer" >LogOut</button>
+            <button onClick={logout} className=" px-5 py-2 bg-green-600 text-white rounded-md cursor-pointer" >LogOut</button>
 
           ): (
             <>
