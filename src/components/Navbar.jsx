@@ -90,7 +90,7 @@ function Navbar () {
         {/* Buttons */}
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
           {
-          userLogin? (
+          isLogin? (
             <button onClick={handleLogOutAction} className=" px-5 py-2 bg-violet-600 text-white rounded-md cursor-pointer" >LogOut</button>
 
           ): (
