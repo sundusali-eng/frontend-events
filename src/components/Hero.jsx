@@ -22,7 +22,7 @@ const Hero = () => {
           </p>
         <Link to='/createEvent'>
           <button className="bg-green-500 px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
-            Create Events
+            Create Events +
           </button>
           </Link>
         </div>
