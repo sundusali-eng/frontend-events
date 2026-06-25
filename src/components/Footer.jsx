@@ -73,7 +73,7 @@ const Footer = () => {
               Events
             </li>
             <li className="hover:text-green-500 cursor-pointer">
-              Categories
+              Feature Events
             </li>
             <li className="hover:text-green-500 cursor-pointer">
               Contact
