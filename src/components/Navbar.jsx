@@ -88,6 +88,13 @@ const navigate = useNavigate()
                Contact
           </li>
           </Link>
+        
+
+        <Link to= '/dashboard'>
+          <li className="hover:text-green-400 transition">
+               Dashboard
+          </li>
+          </Link>
         </ul>
 
         {/* Buttons */}

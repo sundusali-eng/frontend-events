@@ -12,7 +12,7 @@ import CreateEvent from './pages/CreateEvents.jsx'
 import Events from './pages/Events.jsx'
 import Register from './services/Register.jsx'
 import Login from './services/Login.jsx'
-
+import Dashboard from './pages/Dashboard.jsx'
 import EventDetails from './pages/EventDetails.jsx'
 import Booking from './pages/Booking.jsx'
 import Contact from './components/Contact.jsx'
@@ -48,6 +48,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/feature", element: <FeaturedEvents />
+      },
+      {
+        path: "/dashboard", element: <Dashboard />
       }
     ] 
   }

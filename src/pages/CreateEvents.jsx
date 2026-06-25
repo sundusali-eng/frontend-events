@@ -8,12 +8,7 @@ import toast, {Toaster} from 'react-hot-toast'
 export default function CreateEvent() {
   const navigate = useNavigate();
 
-       useEffect(()=>{
-          const token = localStorage.getItem('adminLogin')
-          if(!token){
-             navigate('/admin/login')
-         }
-        })
+      
 
 
         const [title, setTitle] = useState('')
