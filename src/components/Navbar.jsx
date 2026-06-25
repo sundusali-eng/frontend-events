@@ -30,7 +30,7 @@ function Navbar () {
 
    useEffect(() => {
     const token = localStorage.getItem('userLogin')
-    setUserLogin(!!token)
+    setIsLogin(!!token)
   })
 
 
