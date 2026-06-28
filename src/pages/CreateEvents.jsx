@@ -9,8 +9,6 @@ export default function CreateEvent() {
   const navigate = useNavigate();
 
       
-
-
         const [title, setTitle] = useState('')
         const [date, setDate] = useState('')
         const [location, setLocation] = useState('')

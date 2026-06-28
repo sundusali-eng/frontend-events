@@ -3,6 +3,7 @@ import axios from "axios"
 import toast, {Toaster} from 'react-hot-toast'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Login() {
 
@@ -39,6 +40,14 @@ function Login() {
     
     <button type="submit" className="w-50 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition mt-3 duration-300"> Login </button>
 
+<div>
+     <p className="text-center text-gray-400 mt-4">
+              Don’t have an account?{" "}
+       <Link to="/register" className="text-orange-500 hover:text-orange-400 font-semibold" >
+        Create account
+       </Link>
+      </p>
+      </div>
      </form>
 
      </div>

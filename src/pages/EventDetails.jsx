@@ -24,16 +24,16 @@ const handleBooking = async () => {
   try {
 
     const res = await axios.post(
-      `${BackendUrl}/api/booking`,
-      {
-        eventId: event._id
-      },
-      {
-        headers:{
-          token: localStorage.getItem("token")
-        }
-      }
-    );
+  `${BackendUrl}/api/booking/book`,
+  {
+    eventId: event._id,
+  },
+  {
+    headers: {
+      token: localStorage.getItem("token"),
+    },
+  }
+);
 
     console.log(res.data);
 

@@ -3,6 +3,7 @@ import axios from "axios"
 import toast, {Toaster} from 'react-hot-toast'
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 function Register() {
 
@@ -43,6 +44,12 @@ function Register() {
     <br />
     <button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition mt-3 duration-300"> Register </button>
       
+      <p className="text-center text-gray-400 mt-4">
+              Already have an account?{" "}
+       <Link to="/login" className="text-orange-500 hover:text-orange-400 font-semibold" >
+        Login
+       </Link>
+      </p>
      </form>
 
      </div>

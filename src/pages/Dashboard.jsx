@@ -11,22 +11,35 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { BackendUrl } from "../config";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
 
   const [events, setEvents] = useState([]);
+
+   const navigate = useNavigate()
+
+    useEffect(() => {
+  const token = localStorage.getItem("adminLogin");
+
+  if (!token) {
+    navigate("/admin/login");
+  }
+}, []);
   
 
-useEffect(() => {
-  fetchEvents();
-}, []);
+        
+        const fetchEvents = async () => {
+          const res = await post(`${BackendUrl}/api/get`);
+          const data = await res.json();
+          
+          setEvents(data);
+        };
 
-const fetchEvents = async () => {
-  const res = await fetch(`${BackendUrl}/api/get`);
-  const data = await res.json();
 
-  setEvents(data);
-};
+        useEffect(() => {
+          fetchEvents();
+        }, []);
 
   return (
     <div>
