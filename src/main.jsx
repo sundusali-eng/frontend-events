@@ -18,6 +18,7 @@ import Booking from './pages/Booking.jsx'
 import Contact from './components/Contact.jsx'
 import FeaturedEvents from './components/FeatureEvent.jsx'
 import AdminLogin from './services/AdminLogin.jsx'
+import MyBookings from './pages/MyBooking.jsx'
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/login", element: <AdminLogin />
+      },
+      {
+       path: "/my-bookings",  element: <MyBookings />
       }
     ] 
   }

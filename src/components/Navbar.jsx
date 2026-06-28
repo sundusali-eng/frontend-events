@@ -88,6 +88,13 @@ const navigate = useNavigate()
                Contact
           </li>
           </Link>
+
+          <Link
+             to="/my-bookings"
+             className="hover:text-green-400 transition"
+            >
+           My Bookings
+         </Link>
       
         </ul>
 
