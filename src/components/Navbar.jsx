@@ -107,7 +107,7 @@ const navigate = useNavigate()
         <div className="relative">
           <button onClick={() => setOpen(!open)}>
             <div className="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center text-xl font-bold">
-              {user.name.charAt(0).toUpperCase()}
+             {user?.name?.charAt(0).toUpperCase()}
             </div>
           </button>
 
@@ -116,7 +116,7 @@ const navigate = useNavigate()
 
               <div className="p-5 border-b">
                 <p className="text-gray-500 text-sm">Welcome,</p>
-                <h2 className="font-bold text-lg">{user.name}</h2>
+                <h2 className="font-bold text-lg">{user?.name}</h2>
               </div>
 
               <Link
