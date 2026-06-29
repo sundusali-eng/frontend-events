@@ -103,7 +103,7 @@ const navigate = useNavigate()
 
         {/* Buttons */}
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
-            {userLogin ? (
+            {isLogin ? (
         <div className="relative">
           <button onClick={() => setOpen(!open)}>
             <div className="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center text-xl font-bold">
