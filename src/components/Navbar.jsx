@@ -94,13 +94,6 @@ const navigate = useNavigate()
                Contact
           </li>
           </Link>
-
-          <Link
-             to="/my-bookings"
-             className="hover:text-green-400 transition"
-            >
-           My Bookings
-         </Link>
       
         </ul>
 
@@ -125,7 +118,7 @@ const navigate = useNavigate()
               {isLogin && (
                  <Link
                 to="/my-bookings"
-               className="hover:text-green-400 transition"
+               className="hover:text-green-400 px-4 transition"
                  >
                 My Bookings
                     </Link>
