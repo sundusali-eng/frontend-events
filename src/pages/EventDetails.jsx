@@ -30,15 +30,18 @@ const handleBooking = async () => {
   },
   {
     headers: {
-      token: localStorage.getItem("token"),
+      token: localStorage.getItem("userLogin"),
     },
   }
 );
 
-    console.log(res.data);
+console.log(res.data);
 
+     if (res.data.success) {
     alert("Booking created successfully");
-
+      } else {
+       alert(res.data.message);
+        }
   } catch(error){
     console.log(error);
   }

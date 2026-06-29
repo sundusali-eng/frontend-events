@@ -10,7 +10,7 @@ const getBookings = async () => {
   try {
     const response = await axios.get(`${BackendUrl}/api/my`, {
       headers:{
-        token: localStorage.getItem("token")
+        token: localStorage.getItem("userLogin")
       }
     });
 

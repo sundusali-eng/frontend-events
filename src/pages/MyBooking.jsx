@@ -14,7 +14,7 @@ export default function MyBookings() {
         `${BackendUrl}/api/booking/my-bookings`,
         {
           headers: {
-            token: localStorage.getItem("token")
+            token: localStorage.getItem("userLogin")
           }
         }
       );
