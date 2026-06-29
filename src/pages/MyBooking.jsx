@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
+import { Navigate } from "react-router-dom";
 
 export default function MyBookings() {
 
+    const token = localStorage.getItem("userLogin");
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+  
   const [bookings, setBookings] = useState([]);
 
   const getBookings = async () => {
