@@ -93,11 +93,11 @@ return(
     </h2>
 
       </div>
-    
+       <Link to='/my-bookings'>
       <button onClick={handleBooking} className="bg-green-500 text-white px-5 py-2 rounded mt-5">
         Book Now
       </button>
-   
+      </Link>
 
 </div>
   </div>
