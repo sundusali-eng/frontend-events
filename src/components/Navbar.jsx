@@ -127,16 +127,17 @@ const navigate = useNavigate()
                 My Bookings
               </Link>
 
-              <button
-                onClick={() => {
-                  localStorage.removeItem("user");
-                  window.location.reload();
-                }}
-                className="flex items-center gap-3 px-5 py-4 text-red-500 hover:bg-red-50 w-full"
-              >
-                <LogOut size={20} />
-                Sign Out
-              </button>
+            <button
+           onClick={() => {
+           localStorage.removeItem("user");
+           localStorage.removeItem("userLogin");
+           setOpen(false);
+           window.location.reload();
+         }}
+        className="flex items-center gap-3 px-5 py-4 text-red-500 hover:bg-red-50 w-full">
+        <LogOut size={20} />
+       Sign Out
+          </button>
 
             </div>
           )}
