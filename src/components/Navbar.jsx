@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { User, LogOut, CalendarDays } from "lucide-react";
 
 
 
@@ -11,6 +12,8 @@ function Navbar () {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false)
+
+    const user = JSON.parse(localStorage.getItem("user"));
  
 const navigate = useNavigate()
 
@@ -100,28 +103,53 @@ const navigate = useNavigate()
 
         {/* Buttons */}
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
-          {
-          isLogin? (
-            <button onClick={logout} className=" px-5 py-2 bg-green-600 text-white rounded-md cursor-pointer" >LogOut</button>
+            {userLogin ? (
+        <div className="relative">
+          <button onClick={() => setOpen(!open)}>
+            <div className="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center text-xl font-bold">
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+          </button>
 
-          ): (
-            <>
-            <Link to='/login'>
-            <button className="px-4 py-2 border border-green-400 rounded-lg hover:bg-green-400 hover:text-black transition">
-              Login
-            </button>
-             </Link>
+          {open && (
+            <div className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-xl text-black overflow-hidden">
 
-             <Link to='/register'>
-            <button className="px-4 py-2 bg-green-500 rounded-lg hover:bg-green-600 transition">
-              SingUp
-            </button>
-            </Link>
-            </>
-          )
-        }
-          
+              <div className="p-5 border-b">
+                <p className="text-gray-500 text-sm">Welcome,</p>
+                <h2 className="font-bold text-lg">{user.name}</h2>
+              </div>
+
+              <Link
+                to="/my-bookings"
+                className="flex items-center gap-3 px-5 py-4 hover:bg-gray-100"
+              >
+                <CalendarDays size={20} />
+                My Bookings
+              </Link>
+
+              <button
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  window.location.reload();
+                }}
+                className="flex items-center gap-3 px-5 py-4 text-red-500 hover:bg-red-50 w-full"
+              >
+                <LogOut size={20} />
+                Sign Out
+              </button>
+
+            </div>
+          )}
         </div>
+      ) : (
+        <Link
+          to="/login"
+          className="bg-orange-500 px-5 py-2 rounded-lg"
+        >
+          Login
+        </Link>
+      )}
+      </div>
 
          <button onClick={() => setIsOpen(!isOpen)}
             className="md:hidden"

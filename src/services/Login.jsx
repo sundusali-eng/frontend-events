@@ -19,6 +19,7 @@ function Login() {
             const response = await axios.post(`${BackendUrl}/api/user/login`, {email, password})
             if(response.data.success){
                 localStorage.setItem('userLogin', response.data.token)
+                localStorage.setItem("user", JSON.stringify(response.data.user));
                 toast.success(response.data.message)
                 navigate('/')
             }
