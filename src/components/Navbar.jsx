@@ -12,6 +12,7 @@ function Navbar () {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false);
 
     const user = JSON.parse(localStorage.getItem("user"));
  
@@ -28,16 +29,18 @@ const navigate = useNavigate()
    
     
 
-  const logout = () => {
-    localStorage.clear('userLoging')
-    navigate('/login')
-  }
+ const logout = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("userLogin");
+  setIsLogin(false);
+  navigate("/login");
+}
 
 
    useEffect(() => {
     const token = localStorage.getItem('userLogin')
     setIsLogin(!!token)
-  })
+  }, [])
 
 
 
@@ -105,13 +108,13 @@ const navigate = useNavigate()
         <div className={`${isOpen ? "flex" : "hidden"} lg:flex flex-col md:flex-row absolute md:static top-[250px] left-0 w-full md:w-auto bg-white md:bg-transparent p-5 gap-3`}>
             {isLogin ? (
         <div className="relative">
-          <button onClick={() => setOpen(!open)}>
+          <button onClick={() => setProfileOpen(!profileOpen)}>
             <div className="w-11 h-11 rounded-full bg-orange-500 flex items-center justify-center text-xl font-bold">
              {user?.name?.charAt(0).toUpperCase()}
             </div>
           </button>
 
-          {open && (
+          {profileOpen && (
             <div className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-xl text-black overflow-hidden">
 
               <div className="p-5 border-b">
@@ -119,21 +122,16 @@ const navigate = useNavigate()
                 <h2 className="font-bold text-lg">{user?.name}</h2>
               </div>
 
-              <Link
+              {isLogin && (
+                 <Link
                 to="/my-bookings"
-                className="flex items-center gap-3 px-5 py-4 hover:bg-gray-100"
-              >
-                <CalendarDays size={20} />
+               className="hover:text-green-400 transition"
+                 >
                 My Bookings
-              </Link>
-
+                    </Link>
+                )}
             <button
-           onClick={() => {
-           localStorage.removeItem("user");
-           localStorage.removeItem("userLogin");
-           setOpen(false);
-           window.location.reload();
-         }}
+           onClick={logout}
         className="flex items-center gap-3 px-5 py-4 text-red-500 hover:bg-red-50 w-full">
         <LogOut size={20} />
        Sign Out
