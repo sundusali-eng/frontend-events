@@ -1,7 +1,7 @@
 import Navbar from "./Navbar"  
 import Hero from "./Hero"     
 import OurService from "./OurService"
-import FeaturedEvents from "./FeatureEvent"
+import FeatureEventSection from "./FeatureEventSection"
 import Review from "./Review"
 import Contact from "./Contact"
 import Footer from "./Footer"
@@ -10,7 +10,7 @@ export default function Home(){
     return <div>
         <Navbar/>
         <Hero />
-       <FeaturedEvents />
+       <FeatureEventSection />
         <OurService />
        <Review />
        {/* <Contact /> */}

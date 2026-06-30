@@ -4,6 +4,7 @@ import { FiMapPin } from "react-icons/fi";
 import { CiMail } from "react-icons/ci";
 import { FaPhoneAlt } from "react-icons/fa";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 
 
@@ -107,6 +108,7 @@ export default function Contact() {
         </div>
       </div>
     </div>
+    <Footer />
     </div>
   );
 }

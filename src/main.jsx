@@ -16,9 +16,9 @@ import Dashboard from './pages/Dashboard.jsx'
 import EventDetails from './pages/EventDetails.jsx'
 import Booking from './pages/Booking.jsx'
 import Contact from './components/Contact.jsx'
-import FeaturedEvents from './components/FeatureEvent.jsx'
 import AdminLogin from './services/AdminLogin.jsx'
 import MyBookings from './pages/MyBooking.jsx'
+import FeatureEventSection from './components/FeatureEventSection.jsx'
 
 const router = createBrowserRouter([
   {
@@ -49,9 +49,6 @@ const router = createBrowserRouter([
         path: "/contact", element: <Contact />
       },
       {
-        path: "/feature", element: <FeaturedEvents />
-      },
-      {
         path: "/dashboard", element: <Dashboard />
       },
       {
@@ -59,6 +56,9 @@ const router = createBrowserRouter([
       },
       {
        path: "/my-bookings",  element: <MyBookings />
+      },
+      {
+       path: "/feature",  element: <FeatureEventSection />
       }
     ] 
   }

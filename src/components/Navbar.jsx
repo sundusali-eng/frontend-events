@@ -136,7 +136,7 @@ const navigate = useNavigate()
       ) : (
         <Link
           to="/login"
-          className="bg-orange-500 px-5 py-2 rounded-lg"
+          className="bg-green-500 text-center px-5 py-2 rounded-lg"
         >
           Login
         </Link>

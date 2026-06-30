@@ -14,6 +14,7 @@ export default function CreateEvent() {
         const [location, setLocation] = useState('')
         const [category, setCategory] = useState('')
         const [time, setTime] = useState('')
+        const [guests, setGuests] = useState('')
         const [price, setPrice] = useState('')
         const [image, setImage] = useState(null)
         const [description, setDescription] = useState('')
@@ -28,6 +29,7 @@ export default function CreateEvent() {
     formData.append('location', location)
     formData.append('category', category)
     formData.append('time', time)
+    formData.append('guests', guests)
     formData.append('price', price)
     formData.append('image', image)
     formData.append('description', description)
@@ -43,6 +45,7 @@ export default function CreateEvent() {
         setLocation('')
         setCategory('')
         setTime('')
+        setGuests('')
         setPrice('')
         setImage(null)
         setDescription('')
@@ -151,6 +154,20 @@ export default function CreateEvent() {
                 name="time"
                 value={time}
                 onChange={(e)=> setTime(e.target.value)}
+                className="w-full border p-3 rounded"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">
+                Guests
+              </label>
+
+              <input
+                type="number"
+                name="guests"
+                value={guests}
+                onChange={(e)=> setGuests(e.target.value)}
                 className="w-full border p-3 rounded"
               />
             </div>

@@ -2,6 +2,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
@@ -66,18 +67,26 @@ const Footer = () => {
           </h3>
 
           <ul className="space-y-2 text-gray-900">
+           <Link to='/'>
             <li className="hover:text-green-500 cursor-pointer">
               Home
             </li>
+            </Link>
+            <Link to='/event'>
             <li className="hover:text-green-500 cursor-pointer">
               Events
             </li>
+            </Link>
+            <Link to='/feature'>
             <li className="hover:text-green-500 cursor-pointer">
               Feature Events
             </li>
+            </Link>
+            <Link to='/contact'>
             <li className="hover:text-green-500 cursor-pointer">
               Contact
             </li>
+            </Link>
           </ul>
         </div>
 

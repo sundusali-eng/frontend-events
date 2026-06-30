@@ -57,9 +57,9 @@ export default function Events() {
           {event.category}
         </span>
         
-        {/* <p className="text-gray-100 mt-3">
-          {event.description}
-        </p> */}
+        <p className="text-gray-900 mt-3">
+           👥 {event.guests}
+        </p>
 
         <div className="mt-4 space-y-1 text-gray-900 ">
           <p>
