@@ -26,6 +26,7 @@ const getBookings = async () => {
   },[]);
 
 
+
   return(
     <div className="p-6">
 
@@ -49,10 +50,10 @@ const getBookings = async () => {
   </div>
 ))}
 
-     
 
       
 
+    
     </div>
   )
 }

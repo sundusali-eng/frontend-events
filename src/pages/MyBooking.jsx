@@ -40,6 +40,29 @@ export default function MyBookings() {
     getBookings();
   }, []);
 
+const deleteBooking = async (id) => {
+  try {
+    const res = await axios.delete(
+      `${BackendUrl}/api/booking/delete/${id}`,
+      {
+        headers: {
+          token: localStorage.getItem("userLogin"),
+        },
+      }
+    );
+
+    if (res.data.success) {
+      alert("Booking deleted successfully");
+      getBookings();
+    } else {
+      alert(res.data.message);
+    }
+  } catch (error) {
+    console.log(error);
+    alert("Something went wrong");
+  }
+};
+
   return (
     <div className="max-w-6xl mx-auto mt-10">
 
@@ -82,6 +105,12 @@ export default function MyBookings() {
 
             </div>
 
+       <button
+      onClick={() => deleteBooking(item._id)}
+       className="bg-red-600 text-white px-4 py-2 rounded"
+   >
+    Delete
+   </button>
           </div>
 
         ))}
