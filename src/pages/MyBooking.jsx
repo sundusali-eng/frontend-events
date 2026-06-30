@@ -104,13 +104,14 @@ const deleteBooking = async (id) => {
               </p>
 
             </div>
-
+      <div className="p-4">
        <button
       onClick={() => deleteBooking(item._id)}
-       className="bg-red-600 text-white px-4 py-2 rounded"
+       className="bg-red-600 w-full text-white py-2 rounded mb-2"
    >
     Delete
    </button>
+   </div>
           </div>
 
         ))}
