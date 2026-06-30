@@ -20,12 +20,12 @@ const res = await axios.get(
 `${BackendUrl}/api/admin/dashboard`,
 {
  headers:{
-   token:localStorage.getItem("adminLogin")
- }
+ token: localStorage.getItem("adminLogin")
+}
 }
 );
 
-
+console.log(res.data); 
 if(res.data.success){
 
 setDashboard(res.data.data);

@@ -19,6 +19,7 @@ import Contact from './components/Contact.jsx'
 import AdminLogin from './services/AdminLogin.jsx'
 import MyBookings from './pages/MyBooking.jsx'
 import FeatureEventSection from './components/FeatureEventSection.jsx'
+import AdminProtectedRoute from "./services/AdminProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,8 +50,12 @@ const router = createBrowserRouter([
         path: "/contact", element: <Contact />
       },
       {
-        path: "/admin/dashboard", element: <Dashboard />
-      },
+         path: "/dashboard",
+          element:
+        <AdminProtectedRoute>
+       <Dashboard />
+       </AdminProtectedRoute>
+          },
       {
         path: "/admin/login", element: <AdminLogin />
       },
