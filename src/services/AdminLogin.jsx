@@ -16,6 +16,7 @@ function AdminLogin() {
         try {
             
             const response = await axios.post(`${BackendUrl}/api/admin/login`, {email,password})
+            console.log("BackendUrl:", BackendUrl);
             console.log(response.data);
             if(response.data.success){
                 localStorage.setItem('adminLogin', response.data.token)
