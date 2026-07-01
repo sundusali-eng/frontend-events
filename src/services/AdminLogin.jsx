@@ -21,7 +21,7 @@ function AdminLogin() {
             if(response.data.success){
                 localStorage.setItem('adminLogin', response.data.token)
                 toast.success(response.data.message)
-                navigate('/admin/dashboard')
+                navigate('/dashboard')
                 
             }else{
                 toast.error(response.data.message)
