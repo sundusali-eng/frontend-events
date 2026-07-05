@@ -9,7 +9,7 @@ import toast, {Toaster} from 'react-hot-toast'
 
   const getMessages = async () => {
     try {
-      const res = await axios.get(`${BackendUrl}/api/contact/get`, {
+      const res = await axios.get(`${BackendUrl}/api/contact`, {
         headers: {
           token: localStorage.getItem("adminLogin"),
         },

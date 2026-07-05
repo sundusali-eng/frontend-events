@@ -18,12 +18,12 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${BackendUrl}/api/contact/add`, {
+    await axios.post(`${BackendUrl}/api/contact`, {
         name,
         email,
         phone,
         message,
-      },);
+     });
 
       if (res.data.success) {
         toast.success("Message sent successfully");
