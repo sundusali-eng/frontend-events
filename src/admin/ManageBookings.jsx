@@ -16,10 +16,9 @@ export default function ManageBookings() {
       });
 
       if (res.data.success) {
-        setBookings(res.data.bookings); // ✅ FIXED
+        setBookings(res.data.bookings);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Failed to load bookings");
     }
   };
@@ -28,12 +27,34 @@ export default function ManageBookings() {
     getBookings();
   }, []);
 
-  const deleteBooking = async (id) => {
-    if (!window.confirm("Delete this booking?")) return;
+  // const deleteBooking = async (id) => {
+  //   if (!window.confirm("Delete this booking?")) return;
 
+  //   try {
+  //     const res = await axios.delete(
+  //       `${BackendUrl}/api/booking/delete/${id}`,
+  //       {
+  //         headers: {
+  //           token: localStorage.getItem("adminLogin"),
+  //         },
+  //       }
+  //     );
+
+  //     if (res.data.success) {
+  //       toast.success("Booking deleted");
+  //       getBookings();
+  //     }
+  //   } catch (error) {
+  //     toast.error("Delete failed");
+  //   }
+  // };
+
+  // 🔥 CONFIRM / CANCEL FUNCTION
+  const updateStatus = async (id, status) => {
     try {
-      const res = await axios.delete(
-        `${BackendUrl}/api/booking/delete/${id}`,
+      const res = await axios.put(
+        `${BackendUrl}/api/booking/status/${id}`,
+        { status },
         {
           headers: {
             token: localStorage.getItem("adminLogin"),
@@ -42,12 +63,11 @@ export default function ManageBookings() {
       );
 
       if (res.data.success) {
-        toast.success("Booking deleted");
+        toast.success(`Booking ${status}`);
         getBookings();
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Delete failed");
+      toast.error("Status update failed");
     }
   };
 
@@ -78,7 +98,8 @@ export default function ManageBookings() {
               <th className="p-3">User</th>
               <th className="p-3">Email</th>
               <th className="p-3">Event</th>
-              <th className="p-3">Action</th>
+              <th className="p-3">Status</th>
+              <th className="p-3">Actions</th>
             </tr>
           </thead>
 
@@ -89,13 +110,43 @@ export default function ManageBookings() {
                 <td>{booking.userId?.email}</td>
                 <td>{booking.eventId?.title}</td>
 
+                {/* STATUS BADGE */}
                 <td>
+                  <span
+                    className={`px-2 py-1 rounded text-white text-sm ${
+                      booking.status === "Confirmed"
+                        ? "bg-green-600"
+                        : booking.status === "Cancelled"
+                        ? "bg-red-600"
+                        : "bg-yellow-500"
+                    }`}
+                  >
+                    {booking.status || "Pending"}
+                  </span>
+                </td>
+
+                {/* ACTIONS */}
+                <td className="flex gap-2 justify-center">
                   <button
+                    onClick={() => updateStatus(booking._id, "Confirmed")}
+                    className="bg-green-600 text-white px-2 py-1 rounded"
+                  >
+                    Confirm
+                  </button>
+
+                  <button
+                    onClick={() => updateStatus(booking._id, "Cancelled")}
+                    className="bg-yellow-600 text-white px-2 py-1 rounded"
+                  >
+                    Cancel
+                  </button>
+
+                  {/* <button
                     onClick={() => deleteBooking(booking._id)}
-                    className="bg-red-600 text-white px-3 py-1 rounded"
+                    className="bg-red-600 text-white px-2 py-1 rounded"
                   >
                     Delete
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
