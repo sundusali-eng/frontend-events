@@ -23,11 +23,7 @@ export default function Contact() {
         email,
         phone,
         message,
-      }, {
-          headers: {
-            token: localStorage.getItem("userLogin")
-          }
-        });
+      },);
 
       if (res.data.success) {
         toast.success("Message sent successfully");
