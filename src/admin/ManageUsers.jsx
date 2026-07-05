@@ -1,6 +1,7 @@
 import {useEffect,useState} from "react";
 import axios from "axios";
 import {BackendUrl} from "../config";
+import toast, {Toaster} from "react-hot-toast";
 
 
 export default function ManageUsers(){
@@ -114,6 +115,7 @@ getUsers();
           </tbody>
         </table>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
  )
 }
