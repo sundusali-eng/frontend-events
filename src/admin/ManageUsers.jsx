@@ -38,7 +38,7 @@ const getUsers = async () => {
  const updateStatus = async (id, status) => {
     try {
       const res = await axios.put(
-        `${BackendUrl}/api/user/status/${id}`,
+        `${BackendUrl}/api/status/${id}`,
         { status },
         {
           headers: {
