@@ -68,7 +68,7 @@ getUsers();
 
       <div className="bg-white rounded-xl shadow overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-indigo-600 text-white">
+          <thead className="bg-green-600 text-white">
             <tr>
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
