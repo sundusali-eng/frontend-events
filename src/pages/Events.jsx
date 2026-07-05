@@ -20,6 +20,7 @@ export default function Events() {
   useEffect(() => {
     getEvents();
   }, []);
+  
 
    return (
     <div>

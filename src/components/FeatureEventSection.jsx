@@ -21,23 +21,17 @@ function FeatureEventSection() {
 
   return (
     <section className="py-16 px-6">
-    <div className=" mb-10">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-     
+    <div className=" max-w-7xl mx-auto">
+     <div className="text-center mb-12">
       <h1 className="text-4xl font-bold text-gray-800">
         Featured Events
       </h1>
 
-      {/* <p className="text-gray-500 mt-2">
+      <p className="text-gray-500 mt-2">
         Discover our most popular upcoming events.
-      </p> */}
-       
-       <Link to='/event'>
-          <button className="bg-green-500 px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
-            All Events 
-          </button>
-          </Link>
-          </div>
+      </p>
+       </div>
+      
     <div className="grid md:grid-cols-3 gap-6 mt-4">
 
       {events.slice(0, 3).map((event) => (

@@ -20,9 +20,9 @@ const Hero = () => {
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
             Join conferences, workshops, concerts and networking events near you.
           </p>
-        <Link to='/createEvent'>
+        <Link to='/event'>
           <button className="bg-green-500 px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition">
-            Create Events +
+            View Events
           </button>
           </Link>
         </div>

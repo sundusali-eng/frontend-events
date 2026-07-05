@@ -1,121 +1,168 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
+import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
+export default function ManageEvents() {
 
-export default function ManageEvents(){
+  const [events, setEvents] = useState([]);
+  const [search, setSearch] = useState("");
 
-const [events,setEvents] = useState([]);
+  const getEvents = async () => {
+    try {
 
+      const res = await axios.get(`${BackendUrl}/api/get`);
 
-const getEvents = async()=>{
+      if (res.data.success) {
+        setEvents(res.data.data);
+      }
 
- try{
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load events");
+    }
+  };
 
-  const res = await axios.get(
-    `${BackendUrl}/api/get`
+  useEffect(() => {
+    getEvents();
+  }, []);
+
+  const deleteEvent = async (id) => {
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this event?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+
+      const res = await axios.delete(
+        `${BackendUrl}/api/delete/${id}`
+      );
+
+      if (res.data.success) {
+
+        toast.success("Event deleted");
+
+        getEvents();
+
+      } else {
+
+        toast.error(res.data.message);
+
+      }
+
+    } catch (error) {
+
+      console.log(error);
+
+      toast.error("Delete failed");
+
+    }
+  };
+
+  const filteredEvents = events.filter((item) =>
+    item.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  if(res.data.success){
-    setEvents(res.data.data);
-  }
+  return (
+    <div className="p-6">
 
- }catch(error){
-   console.log(error);
- }
+      <div className="flex justify-between items-center mb-6">
 
-}
+        <h1 className="text-3xl font-bold">
+          Manage Events
+        </h1>
 
+        <input
+          type="text"
+          placeholder="Search event..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border p-2 rounded-lg w-72"
+        />
 
-useEffect(()=>{
- getEvents();
-},[]);
+      </div>
 
+      <div className="overflow-x-auto bg-white rounded-xl shadow">
 
+        <table className="w-full">
 
-const deleteEvent = async(id)=>{
+          <thead className="bg-green-600 text-white">
 
- try{
+            <tr>
 
- const res = await axios.delete(
-  `${BackendUrl}/api/delete/${id}`
- );
+              <th className="p-3">Image</th>
 
+              <th className="p-3">Title</th>
 
- if(res.data.success){
-   getEvents();
- }
+              <th className="p-3">Category</th>
 
+              <th className="p-3">Location</th>
 
- }catch(error){
-  console.log(error);
- }
+              <th className="p-3">Price</th>
 
-}
+              <th className="p-3">Actions</th>
 
+            </tr>
 
+          </thead>
 
-return(
+          <tbody>
 
-<div>
+            {filteredEvents.map((event) => (
 
-<h1 className="text-3xl font-bold mb-8">
- Manage Events
-</h1>
+              <tr
+                key={event._id}
+                className="border-b text-center"
+              >
 
+                <td className="p-3">
 
-<div className="grid md:grid-cols-3 gap-6">
+                  <img
+                    src={`${BackendUrl}/images/${event.image}`}
+                    className="w-16 h-16 rounded object-cover mx-auto"
+                    alt=""
+                  />
 
+                </td>
 
-{
-events.map((event)=>(
+                <td>{event.title}</td>
 
-<div 
-key={event._id}
-className="bg-white rounded-xl shadow overflow-hidden"
->
+                <td>{event.category}</td>
 
+                <td>{event.location}</td>
 
-<img
-src={`${BackendUrl}/images/${event.image}`}
-className="w-full h-48 object-cover"
-/>
+                <td>${event.price}</td>
 
+                <td className="space-x-2">
 
-<div className="p-4">
+                <Link to={`/admin/edit-event/${event._id}`}
+                 className="bg-blue-600 text-white px-3 py-1 rounded">
+                    Edit
+                 </Link>
 
-<h2 className="font-bold text-xl">
-{event.title}
-</h2>
+                  <button
+                    onClick={() => deleteEvent(event._id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded"
+                  >
+                    Delete
+                  </button>
 
+                </td>
 
-<p>
-{event.location}
-</p>
+              </tr>
 
+            ))}
 
-<button
-onClick={()=>deleteEvent(event._id)}
-className="bg-red-600 text-white px-4 py-2 rounded mt-4"
->
-Delete
-</button>
+          </tbody>
 
+        </table>
 
-</div>
+      </div>
 
-
-</div>
-
-))
-}
-
-
-</div>
-
-
-</div>
-
-)
-
+    </div>
+  );
 }

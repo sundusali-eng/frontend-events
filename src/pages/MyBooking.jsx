@@ -88,6 +88,46 @@ const deleteBooking = async (id) => {
             <div className="p-4">
 
               <h2 className="text-xl font-bold">
+  {item.eventId.title}
+</h2>
+
+<p className="mt-2">
+  📍 {item.eventId.location}
+</p>
+
+<p>
+  📅 Event Date: {item.eventId.date}
+</p>
+
+<p>
+  ⏰ Time: {item.eventId.time}
+</p>
+
+<p>
+  👥 Guests: {item.guests}
+</p>
+
+<p>
+  💵 Ticket Price: ${item.eventId.price}
+</p>
+
+<p>
+  💰 Total: ${item.totalPrice}
+</p>
+
+<p>
+  📌 Status:
+  <span className="ml-2 px-2 py-1 rounded bg-yellow-100 text-yellow-700">
+    {item.status}
+  </span>
+</p>
+
+<p>
+  📝 Booked On:
+     {new Date(item.createdAt).toLocaleDateString()}
+           </p>
+
+              <h2 className="text-xl font-bold">
                 {item.eventId.title}
               </h2>
 

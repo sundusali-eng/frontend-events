@@ -1,87 +1,162 @@
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import {BackendUrl} from "../config";
+import { BackendUrl } from "../config";
+import toast from "react-hot-toast";
+
+export default function ManageBookings() {
+
+  const [bookings, setBookings] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const getBookings = async () => {
+
+    try {
+
+      const res = await axios.get(`${BackendUrl}/api/booking/all`);
+
+      if (res.data.success) {
+        setBookings(res.data.data);
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to load bookings");
+    }
+
+  };
+
+  useEffect(() => {
+    getBookings();
+  }, []);
+
+  const deleteBooking = async (id) => {
+
+    if (!window.confirm("Delete this booking?")) return;
+
+    try {
+
+      const res = await axios.delete(
+        `${BackendUrl}/api/booking/delete/${id}`, {
+          headers: {
+            token: localStorage.getItem("adminLogin")
+          }
+        }
+      );
+     
 
 
-export default function ManageBookings(){
+      if (res.data.success) {
 
+        toast.success("Booking deleted");
 
-const [bookings,setBookings]=useState([]);
+        getBookings();
 
+      }
 
-const getBookings=async()=>{
+    } catch (error) {
 
-try{
+      console.log(error);
 
-const res = await axios.get(
-`${BackendUrl}/api/booking/all`
-);
+      toast.error("Delete failed");
 
+    }
 
-if(res.data.success){
-setBookings(res.data.bookings);
-}
+  };
 
+  const filtered = bookings.filter((item) =>
+    item.name?.toLowerCase().includes(search.toLowerCase()) ||
+    item.event?.title?.toLowerCase().includes(search.toLowerCase())
+  );
 
-}catch(error){
-console.log(error);
-}
+  return (
+    <div className="p-6">
 
+      <div className="flex justify-between items-center mb-6">
 
-}
+        <h1 className="text-3xl font-bold">
+          Manage Bookings
+        </h1>
 
+        <input
+          type="text"
+          placeholder="Search..."
+          className="border p-2 rounded-lg w-72"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-useEffect(()=>{
-getBookings();
-},[]);
+      </div>
 
+      <div className="bg-white rounded-xl shadow overflow-x-auto">
 
+        <table className="w-full">
 
-return(
+          <thead className="bg-indigo-600 text-white">
 
-<div>
+            <tr>
 
+              <th className="p-3">User</th>
 
-<h1 className="text-3xl font-bold mb-8">
-Manage Bookings
-</h1>
+              <th className="p-3">Email</th>
 
+              <th className="p-3">Event</th>
 
+              <th className="p-3">Guests</th>
 
-<div className="bg-white rounded-xl shadow p-5">
+              <th className="p-3">Action</th>
 
+            </tr>
 
-{
-bookings.map((item)=>(
+          </thead>
 
-<div 
-key={item._id}
-className="border-b py-4"
->
+          <tbody>
 
+            {filtered.map((booking) => (
 
-<h2 className="font-bold">
-{item.eventId?.title}
-</h2>
+              <tr
+                key={booking._id}
+                className="border-b text-center"
+              >
 
+                <td>{booking.name}</td>
 
-<p>
-User: {item.userId?.name}
-</p>
+                <td>{booking.email}</td>
 
+                <td>{booking.event?.title}</td>
 
-</div>
+                <td>{booking.guests}</td>
 
-))
-}
+                <td>
 
+                  <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
 
-</div>
+                    {booking.status || "Pending"}
 
+                  </span>
 
+                </td>
 
-</div>
+                <td>
 
-)
+                  <button
+                    onClick={() => deleteBooking(booking._id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded"
+                  >
+                    Delete
+                  </button>
 
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+  );
 }

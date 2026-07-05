@@ -20,6 +20,11 @@ import AdminLogin from './services/AdminLogin.jsx'
 import MyBookings from './pages/MyBooking.jsx'
 import FeatureEventSection from './components/FeatureEventSection.jsx'
 import AdminProtectedRoute from "./services/AdminProtectedRoute.jsx";
+import AdminLayout from './admin/AdminLayOut.jsx'
+import ManageEvents from './admin/ManageEvents.jsx'
+import ManageBookings from './admin/ManageBookings.jsx'
+import ManageUsers from './admin/ManageUsers.jsx'
+import EditEvent from './pages/EditEvent.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,9 +35,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/event", element: <Events />
-      },
-      {
-        path: "/createEvent", element: <CreateEvent />
       },
       {
          path: "/register", element: <Register />
@@ -50,14 +52,56 @@ const router = createBrowserRouter([
         path: "/contact", element: <Contact />
       },
       {
-         path: "/dashboard",
-          element:
-        <AdminProtectedRoute>
-       <Dashboard />
-       </AdminProtectedRoute>
-          },
-      {
-        path: "/admin/login", element: <AdminLogin />
+  path: "/admin/login",
+  element: <AdminLogin />
+},
+
+{
+  path: "/admin",
+  element: (
+    <AdminProtectedRoute>
+      <AdminLayout />
+    </AdminProtectedRoute>
+  ),
+
+  children: [
+
+    {
+      index: true,
+      element: <Dashboard />
+    },
+
+    {
+      path: "dashboard",
+      element: <Dashboard />
+    },
+
+    {
+      path: "events",
+      element: <ManageEvents />
+    },
+
+    {
+      path: "create-event",
+      element: <CreateEvent />
+    },
+
+    {
+      path: "bookings",
+      element: <ManageBookings />
+    },
+
+       {
+        path: "users",
+        element: <ManageUsers />
+        },
+
+          {
+          path: "edit-event/:id",
+           element: <EditEvent />
+           }
+
+       ]
       },
       {
        path: "/my-bookings",  element: <MyBookings />
@@ -65,6 +109,7 @@ const router = createBrowserRouter([
       {
        path: "/feature",  element: <FeatureEventSection />
       }
+    
     ] 
   }
 ])

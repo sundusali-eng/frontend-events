@@ -9,26 +9,30 @@ export default function ManageUsers(){
 const [users,setUsers]=useState([]);
 
 
-const getUsers=async()=>{
+const getUsers = async () => {
+  try {
 
-try{
+    const token = localStorage.getItem("adminLogin");
 
-const res = await axios.get(
-`${BackendUrl}/api/users`
-);
+    const res = await axios.get(
+      `${BackendUrl}/api/users`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
 
+    console.log(res.data);
 
-if(res.data.success){
-setUsers(res.data.users);
-}
+    if (res.data.success) {
+      setUsers(res.data.users);
+    }
 
-
-}catch(error){
-console.log(error);
-}
-
-}
-
+  } catch (error) {
+    console.log(error.response?.data);
+  }
+};
 
 useEffect(()=>{
 getUsers();
