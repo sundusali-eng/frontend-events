@@ -20,7 +20,7 @@ import AdminLogin from './services/AdminLogin.jsx'
 import MyBookings from './pages/MyBooking.jsx'
 import FeatureEventSection from './components/FeatureEventSection.jsx'
 import AdminProtectedRoute from "./services/AdminProtectedRoute.jsx";
-import AdminLayout from "./components/AdminLayout.jsx";
+import AdminLayout from "./admin/AdminLayout.jsx";
 import ManageEvents from './admin/ManageEvents.jsx'
 import ManageBookings from './admin/ManageBookings.jsx'
 import ManageUsers from './admin/ManageUsers.jsx'
