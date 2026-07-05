@@ -1,32 +1,40 @@
-import { useEffect, useState } from "react";
+import {useEffect,useState} from "react";
 import axios from "axios";
-import { BackendUrl } from "../config";
-import toast from "react-hot-toast";
+import {BackendUrl} from "../config";
 
-export default function ManageUsers() {
-  const [users, setUsers] = useState([]);
 
-  const getUsers = async () => {
-    try {
-      const res = await axios.get(`${BackendUrl}/api/user/all`, {
+export default function ManageUsers(){
+
+
+const [users,setUsers]=useState([]);
+
+
+const getUsers = async () => {
+  try {
+
+    const token = localStorage.getItem("adminLogin");
+
+    const res = await axios.get(
+      `${BackendUrl}/api/users`,
+      {
         headers: {
-          token: localStorage.getItem("adminLogin"),
+          token,
         },
-      });
-
-      if (res.data.success) {
-        setUsers(res.data.users);
       }
-    } catch (error) {
-      toast.error("Failed to load users");
+    );
+
+    console.log(res.data);
+
+    if (res.data.success) {
+      setUsers(res.data.users);
     }
-  };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+  } catch (error) {
+    console.log(error.response?.data);
+  }
+};
 
-  const updateStatus = async (id, status) => {
+ const updateStatus = async (id, status) => {
     try {
       const res = await axios.put(
         `${BackendUrl}/api/user/status/${id}`,
@@ -47,8 +55,13 @@ export default function ManageUsers() {
     }
   };
 
-  return (
-    <div className="p-6">
+useEffect(()=>{
+getUsers();
+},[]);
+
+
+
+ <div className="p-6">
       <h1 className="text-3xl font-bold mb-6">Manage Users</h1>
 
       <div className="bg-white rounded-xl shadow overflow-x-auto">
@@ -101,5 +114,5 @@ export default function ManageUsers() {
         </table>
       </div>
     </div>
-  );
+  
 }
