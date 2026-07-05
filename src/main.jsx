@@ -25,6 +25,7 @@ import ManageEvents from './admin/ManageEvents.jsx'
 import ManageBookings from './admin/ManageBookings.jsx'
 import ManageUsers from './admin/ManageUsers.jsx'
 import EditEvent from './pages/EditEvent.jsx'
+import Messages from './admin/Massages.jsx'
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,11 @@ const router = createBrowserRouter([
           {
           path: "edit-event/:id",
            element: <EditEvent />
+           },
+
+           {
+          path: "messages",
+           element: <Messages />
            }
 
        ]

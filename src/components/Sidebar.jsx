@@ -42,6 +42,10 @@ Manage Bookings
 Manage Users
 </Link>
 
+<Link to="/admin/messages">
+Messages
+</Link>
+
 <button
 onClick={logout}
 className="bg-red-600 py-2 rounded mt-6"

@@ -1,114 +1,123 @@
-import { FaFacebook } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa6";
-import { FiMapPin } from "react-icons/fi";
-import { CiMail } from "react-icons/ci";
-import { FaPhoneAlt } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from 'axios'
+import {BackendUrl} from '../config'
+import { data, useNavigate } from "react-router-dom";
+import toast, {Toaster} from 'react-hot-toast'
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-
-
 export default function Contact() {
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`${BackendUrl}/api/contact/add`, {
+        name,
+        email,
+        phone,
+        message,
+      },);
+
+      if (res.data.success) {
+        toast.success("Message sent successfully");
+
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+      } else {
+        toast.error("Failed to send message");
+      }
+
+    } catch (err) {
+      toast.error("Server error");
+    }
+  };
+
   return (
     <div>
       <Navbar />
-    <div className="min-h-screen bg-white py-10 px-4">
-      <div className="max-w-5xl mx-auto bg-gray-100 rounded-xl shadow-lg p-8">
 
-        <h1 className="text-4xl text-gray-900 font-bold text-center mb-3">
-          Contact Us
-        </h1>
+      <div className="min-h-screen bg-white py-10 px-4">
+        <div className="max-w-5xl mx-auto bg-gray-100 rounded-xl shadow-lg p-8">
 
-        <p className="text-center text-gray-800 mb-10">
-          Need help with events, tickets or bookings? Contact us anytime.
-        </p>
+          <h1 className="text-4xl font-bold text-center mb-3">
+            Contact Us
+          </h1>
 
-        <div className="grid md:grid-cols-2 gap-10">
+          <p className="text-center mb-10">
+            Need help? Contact us anytime.
+          </p>
 
-          {/* Left Side */}
-          <div>
-            <h2 className="text-2xl text-gray-900 font-semibold mb-6">
-              Contact Information
-            </h2>
+          <div className="grid md:grid-cols-2 gap-10">
 
-            <div className="space-y-4">
+            {/* LEFT SIDE */}
+            <div>
+              <h2 className="text-2xl font-semibold mb-6">
+                Contact Information
+              </h2>
 
-              <div className="flex items-center gap-3">
-                <FiMapPin className="text-blue-600" />
-                <p className="text-gray-900">Mogadishu, Somalia</p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FaPhoneAlt className="text-green-600" />
-                <p className="text-gray-900">+252 61 1234567</p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <CiMail className="text-red-500" />
-                <p className="text-gray-900">support@events.com</p>
-              </div>
-
+              <p>📍 Mogadishu, Somalia</p>
+              <p>📞 +252 61 1234567</p>
+              <p>✉️ support@events.com</p>
             </div>
 
-            {/* Social Links */}
-            <div className="flex gap-4 mt-8">
+            {/* RIGHT SIDE FORM */}
+            <form onSubmit={handleSubmit} className="space-y-4">
 
-              <a
-                href="https://wa.me/252614779074"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-green-500 text-gray-100 p-3 rounded-full hover:scale-110 transition"
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
+
+              <input
+                type="text"
+                placeholder="Your Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
+
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
+
+              <textarea
+                rows="5"
+                placeholder="Write your message..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              ></textarea>
+
+              <button
+                type="submit"
+                className="bg-green-600 text-white px-8 py-3 rounded-lg"
               >
-                <FaWhatsapp />
-              </a>
+                Send Message
+              </button>
 
-              <a
-                href="https://www.facebook.com/samraa.siraaji"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-blue-600 text-gray-100 p-3 rounded-full hover:scale-110 transition"
-              >
-                <FaFacebook />
-              </a>
+            </form>
 
-            </div>
           </div>
-
-          {/* Right Side */}
-          <form className="space-y-4">
-
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full border p-3 text-gray-900 rounded-lg outline-none"
-            />
-
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full border p-3 text-gray-900 rounded-lg outline-none"
-            />
-
-
-            <textarea
-              rows="5"
-              placeholder="Write your message..."
-              className="w-full border text-gray-900 p-3 rounded-lg outline-none"
-            ></textarea>
-
-            <button
-              type="submit"
-              className="bg-green-600 text-gray-900 px-8 py-3 rounded-lg hover:bg-blue-700"
-            >
-              Send Message
-            </button>
-
-          </form>
-
         </div>
       </div>
-    </div>
-    <Footer />
+      <Toaster position="top-right" reverseOrder={false} />
+      <Footer />
     </div>
   );
 }
