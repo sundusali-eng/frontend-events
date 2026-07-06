@@ -73,36 +73,27 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
 
               <input
-                type="text"
-                placeholder="Your Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
+               type="text"
+               value={name}
+               onChange={(e) => setName(e.target.value)}
+             />
 
-              <input
-                type="text"
-                placeholder="Your Phone Number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
+             <input
+               type="email"
+               value={email}
+               onChange={(e) => setEmail(e.target.value)}
+             />
 
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              />
+             <input
+               type="text"
+               value={phone}
+               onChange={(e) => setPhone(e.target.value)}
+             />
 
-              <textarea
-                rows="5"
-                placeholder="Write your message..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full border p-3 rounded-lg"
-              ></textarea>
+             <textarea
+               value={message}
+               onChange={(e) => setMessage(e.target.value)}
+             />
 
               <button
                 type="submit"
