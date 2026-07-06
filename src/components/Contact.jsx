@@ -16,9 +16,15 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+     
+     console.log({
+    name,
+    email,
+    phone,
+    message,
+  });
     try {
-    await axios.post(`${BackendUrl}/api/contact`, {
+   const res = await axios.post(`${BackendUrl}/api/contact`, {
         name,
         email,
         phone,
@@ -73,27 +79,36 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
 
               <input
-               type="text"
-               value={name}
-               onChange={(e) => setName(e.target.value)}
-             />
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
 
-             <input
-               type="email"
-               value={email}
-               onChange={(e) => setEmail(e.target.value)}
-             />
+              <input
+                type="text"
+                placeholder="Your Phone Number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
 
-             <input
-               type="text"
-               value={phone}
-               onChange={(e) => setPhone(e.target.value)}
-             />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              />
 
-             <textarea
-               value={message}
-               onChange={(e) => setMessage(e.target.value)}
-             />
+              <textarea
+                rows="5"
+                placeholder="Write your message..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full border p-3 rounded-lg"
+              ></textarea>
 
               <button
                 type="submit"
