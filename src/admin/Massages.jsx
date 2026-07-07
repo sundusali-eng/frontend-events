@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
-import toast from "react-hot-toast";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
@@ -158,6 +158,7 @@ export default function Messages() {
 
         </div>
       )}
+      <Toaster />
     </div>
   );
 }
