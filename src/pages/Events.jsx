@@ -26,11 +26,10 @@ export default function Events() {
     <div>
       <Navbar />
     <div className="py-8 px-6 bg-white">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
       <h1 className="text-4xl text-gray-900 font-bold text-center mb-10">
         All Events
       </h1>
-        </div>
+      
 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
   {events.map((event) => (
     <div
