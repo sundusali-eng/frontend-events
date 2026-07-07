@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Details(){
 
@@ -38,12 +39,13 @@ const handleBooking = async () => {
 console.log(res.data);
 
      if (res.data.success) {
-    alert("Booking created successfully");
+    toast.success("Booking created successfully");
       } else {
-       alert(res.data.message);
+       toast.error(res.data.message);
         }
   } catch(error){
     console.log(error);
+    toast.error("Something went wrong");
   }
 }
 
@@ -109,6 +111,7 @@ return(
       
 
 </div>
+<Toaster />
   </div>
 )
  

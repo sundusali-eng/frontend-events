@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BackendUrl } from "../config";
 import { Navigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function MyBookings() {
 
@@ -52,14 +53,14 @@ const deleteBooking = async (id) => {
     );
 
     if (res.data.success) {
-      alert("Booking deleted successfully");
+      toast.success("Booking deleted successfully");
       getBookings();
     } else {
-      alert(res.data.message);
+      toast.error(res.data.message);
     }
   } catch (error) {
     console.log(error);
-    alert("Something went wrong");
+    toast.error("Something went wrong");
   }
 };
 
@@ -157,7 +158,7 @@ const deleteBooking = async (id) => {
         ))}
 
       </div>
-
+<Toaster />
     </div>
   );
 
