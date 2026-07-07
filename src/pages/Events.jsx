@@ -26,9 +26,11 @@ export default function Events() {
     <div>
       <Navbar />
     <div className="py-8 px-6 bg-white">
+      <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl text-gray-900 font-bold text-center mb-10">
         All Events
       </h1>
+      </div>
       
 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
   {events.map((event) => (
