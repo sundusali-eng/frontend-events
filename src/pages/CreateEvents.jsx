@@ -136,9 +136,21 @@ export default function CreateEvent() {
                   Select Category
                 </option>
                 <option>Music</option>
-                <option>Events</option>
+                <option>Wedding</option>
+                <option>Corporate</option>
+                <option>Career</option>
                 <option>Business</option>
                 <option>Technology</option>
+                <option>Charity</option>
+                <option>Entertainment</option>
+                <option>Innovation</option>
+                <option>Design</option>
+                <option>Photography</option>
+                <option>Startup</option>
+                <option>Fashion</option>
+                <option>Food</option>
+                <option>Health</option>
+                <option>Marketing</option>
                 <option>Sports</option>
                 <option>Education</option>
               </select>
@@ -178,7 +190,7 @@ export default function CreateEvent() {
               </label>
 
               <input
-                type="number"
+                type="number,text"
                 name="price"
                 value={price}
                 onChange={(e)=> setPrice(e.target.value)}
