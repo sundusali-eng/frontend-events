@@ -79,9 +79,9 @@ return(
       📍 {event.location}
     </p>
 
-    <p className="flex">
+    <p className="flex align-center">
       👥 {event.guests}
-      <p className="py-1">Guests</p>
+      <p className="ml-2">Guests</p>
     </p>
 
     <p>
