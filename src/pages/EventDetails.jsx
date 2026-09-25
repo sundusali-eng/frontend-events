@@ -11,6 +11,10 @@ export default function Details(){
  const [event,setEvent] = useState(null);
 
  const getEvent = async () => {
+
+  console.log("IMAGE NAME:", event.image);
+console.log("IMAGE URL:", `${BackendUrl}/images/${event.image}`);
+
   try {
     const res = await axios.get(`${BackendUrl}/api/get/${id}`);
 
