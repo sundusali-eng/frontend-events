@@ -84,11 +84,11 @@ const navigate = useNavigate()
               Events
           </li>
            </Link>
-         <Link to="/feature">
+         {/* <Link to="/feature">
           <li className="hover:text-green-400 transition">
              Feature Events
           </li>
-          </Link>
+          </Link> */}
          <Link to= '/contact'>
           <li className="hover:text-green-400 transition">
                Contact
